@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 05:36:15 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 06:53:02 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 06:56:50 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ typedef struct  s_pf
 {
     va_list ap;
     size_t  width;
-    char    flags;
+    char    *flags;
     size_t  precision;
     char    specifier;
 }               t_pf;
