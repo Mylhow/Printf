@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 05:36:15 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 20:19:33 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 00:27:29 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,5 +42,7 @@ int 	pf_conv(t_pf *tpf, const char *format);
 void	pf_initlst(va_list *ap, t_pf *tpf);
 void	disp_char(t_pf *tpf);
 void	disp_int(t_pf *tpf);
+void    disp_uint(t_pf *tpf);
+
 
 #endif
