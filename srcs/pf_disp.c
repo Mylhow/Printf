@@ -6,71 +6,13 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 17:43:51 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 23:21:08 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 00:12:02 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <limits.h>
-
-// TODO remplacer foret de If par tableau de pointeur sur fonctions
-void disp_cdhar(t_pf *tpf)
-{
-	int sizeCar;
-	char *arg;
-	int i;
-	int prec_compt;
-
-	i = 0;
-	prec_compt = 0;
-	if (tpf->specifier == 'c')
-	{
-		if (!(arg = malloc(2))) //TODO Secu malloc
-			return ;
-		arg[1] = '\0';
-		arg[0] = va_arg(*(tpf->ap), int);
-	}
-	else
-		arg = va_arg(*(tpf->ap), char *);
-	sizeCar = ft_strlen(arg);
-	if (sizeCar > tpf->width)
-		tpf->length += sizeCar;
-	else
-		tpf->length += tpf->width;
-
-	if ((tpf->fprecision == TRUE) && (tpf->vprecision < sizeCar)) // gestion precision
-			i -= sizeCar - tpf->vprecision;
-	sizeCar = tpf->width - sizeCar; //sizeCar = 7 - 5
-										//sizeCar = 2 verifie ca stp Comment ?
-	if (tpf->fmoins == FALSE)
-	{
-		while (i < sizeCar)
-		{
-
-			if (tpf->fzero == FALSE)
-				ft_putchar_fd(' ', 1);
-			else
-				ft_putchar_fd('0', 1);
-			i++;
-		}
-		if (tpf->fprecision)
-		   ft_putnstr_fd(arg, tpf->vprecision, 1); //TODO putnstr(char *, int);
-		else
-			ft_putstr_fd(arg, 1);
-	}
-	else
-	{
-		ft_putnstr_fd(arg, tpf->vprecision, 1);
-		while (i < sizeCar)
-		{
-			ft_putchar_fd(' ', 1);
-			i++;
-		}
-	}
-	if (tpf->specifier == 'c')
-		free(arg);
-}
 
 void	disp_char(t_pf *tpf)
 {
@@ -83,12 +25,9 @@ void	disp_char(t_pf *tpf)
 	if (tpf->specifier == 'c')
 		value = ft_chartostr(va_arg(*(tpf->ap), int));
 	else
-		value = va_arg(*(tpf->ap), char *);
-	if (!value)
 	{
-		tpf->length += 6;
-		ft_putstr_fd("(null)", 1);
-		return ;
+		if (!(value = va_arg(*(tpf->ap), char *)))
+			value = ft_strdup("(null)");
 	}
 	arglen = ft_strlen(value);
 	if (tpf->fprecision && tpf->vprecision < arglen)
@@ -121,7 +60,9 @@ void    disp_int(t_pf *tpf)
 	int arglen;
 	int espace;
 	int zero;
+	int show;
 
+	show = 1;
 	val = va_arg(*(tpf->ap), int);
 	arglen = ft_digit(val);//1
 	zero = tpf->vprecision - arglen; // 20-10=10
@@ -129,6 +70,12 @@ void    disp_int(t_pf *tpf)
 		espace = tpf->width - arglen;//45-1=44
 	else
 		espace = tpf->width - tpf->vprecision;
+	if (tpf->vprecision == 0 && val == 0)
+	{
+		show = 0;
+		espace++;
+		tpf->length--;
+	}
 	if (tpf->fzero)
 	{
 		(espace > 0) ? zero += espace : 0;
@@ -150,12 +97,14 @@ void    disp_int(t_pf *tpf)
 			ft_putchar_fd(' ', 1);
 		while (zero-- > 0)
 			ft_putchar_fd('0', 1);
+		if (show)
 		ft_putnbr_fd(val, 1);
 	}
 	else
 	{
 		while (zero-- > 0)
 			ft_putchar_fd('0', 1);
+		if (show)
 		ft_putnbr_fd(val, 1);
 		while (espace-- > 0)
 			ft_putchar_fd(' ', 1);   
