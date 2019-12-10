@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 17:43:51 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 00:12:02 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 00:27:19 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,6 +30,7 @@ void	disp_char(t_pf *tpf)
 			value = ft_strdup("(null)");
 	}
 	arglen = ft_strlen(value);
+	(value[0] == '\0') ? arglen++ : 0;
 	if (tpf->fprecision && tpf->vprecision < arglen)
 		tronc = tpf->vprecision;
 	else
@@ -53,7 +54,6 @@ void	disp_char(t_pf *tpf)
 	if (tpf->specifier == 'c')
 		free(value);
 }
-//0.20d 2147483648
 void    disp_int(t_pf *tpf)
 {
 	long val;
@@ -64,13 +64,70 @@ void    disp_int(t_pf *tpf)
 
 	show = 1;
 	val = va_arg(*(tpf->ap), int);
-	arglen = ft_digit(val);//1
-	zero = tpf->vprecision - arglen; // 20-10=10
+	arglen = ft_digit(val);
+	zero = tpf->vprecision - arglen; 
 	if (tpf->vprecision == 0)
-		espace = tpf->width - arglen;//45-1=44
+		espace = tpf->width - arglen;
 	else
 		espace = tpf->width - tpf->vprecision;
-	if (tpf->vprecision == 0 && val == 0)
+	if (tpf->fprecision == 1 && val == 0)
+	{
+		show = 0;
+		espace++;
+		tpf->length--;
+	}
+	if (tpf->fzero)
+	{
+		(espace > 0) ? zero += espace : 0;
+		espace = 0;
+	}
+	if (val < 0)
+	{
+		ft_putchar_fd('-', 1);
+		val *= -1;
+		arglen++;
+		(tpf->fmoins) ? espace-- : 0;
+	}
+	tpf->length += (zero < 0) ? 0 : zero;
+	tpf->length += (espace < 0) ? 0 : espace;
+	tpf->length += arglen;
+	if (tpf->fmoins == FALSE)
+	{
+		while (espace-- > 0)
+			ft_putchar_fd(' ', 1);
+		while (zero-- > 0)
+			ft_putchar_fd('0', 1);
+		if (show)
+		ft_putnbr_fd(val, 1);
+	}
+	else
+	{
+		while (zero-- > 0)
+			ft_putchar_fd('0', 1);
+		if (show)
+		ft_putnbr_fd(val, 1);
+		while (espace-- > 0)
+			ft_putchar_fd(' ', 1);   
+	}
+}
+
+void    disp_uint(t_pf *tpf)
+{
+	long val;
+	int arglen;
+	int espace;
+	int zero;
+	int show;
+
+	show = 1;
+	val = va_arg(*(tpf->ap), long);
+	arglen = ft_digit(val);
+	zero = tpf->vprecision - arglen; 
+	if (tpf->vprecision == 0)
+		espace = tpf->width - arglen;
+	else
+		espace = tpf->width - tpf->vprecision;
+	if (tpf->fprecision == 1 && val == 0)
 	{
 		show = 0;
 		espace++;

@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 14:36:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 23:11:02 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 00:28:48 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,10 +64,12 @@ int   pf_conv(t_pf *tpf, const char *format)
 		}
 	}
 	tpf->specifier = format[i++];
-	if (tpf->specifier == 'd')
+	if (tpf->specifier == 'd' || tpf->specifier == 'i')
 	{
 		disp_int(tpf);
 	}
+	else if (tpf->specifier == 'u')
+		disp_uint(tpf);
 	else if (tpf->specifier == 's' || tpf->specifier == 'c')
 	{
 		disp_char(tpf);
