@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_memset.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/09 15:54:49 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/30 20:22:49 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+/*
+** The memset() function writes len bytes of value c to the string b.
+*/
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	char	*str;
+	size_t	i;
 
 	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
+	str = b;
+	while (i < len)
 	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
+		*(str + i) = c;
 		i++;
 	}
-	va_end(ap);
-	return (tpf->length);
+	return (b);
 }

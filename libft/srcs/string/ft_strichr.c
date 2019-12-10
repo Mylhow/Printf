@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_strichr.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/04 09:33:38 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/04 09:33:52 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+int		ft_strichr(const char *str, int charset)
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	int i;
 
-	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
+	i = -1;
+	if (!str)
+		return (0);
+	while (str[++i])
 	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
-		i++;
+		if (str[i] == charset)
+			return (i + 1);
 	}
-	va_end(ap);
-	return (tpf->length);
+	return (0);
 }

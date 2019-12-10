@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_memchr.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/10 15:16:19 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/30 20:22:35 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+/*
+** The ft_memchr() function locates the first occurrence of c in string s.
+*/
+
+void	*ft_memchr(const void *str, int c, size_t n)
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	char const	*pstr;
+	size_t		i;
 
+	pstr = str;
 	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
+	while (i < n)
 	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
+		if (*(pstr + i) == c)
+			return ((void *)&(*(pstr + i)));
 		i++;
 	}
-	va_end(ap);
-	return (tpf->length);
+	return (0);
 }

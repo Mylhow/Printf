@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_chartostr.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/10 19:34:58 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/10 19:36:46 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+char	*ft_chartostr(int c)
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	char *str;
 
-	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
-		i++;
-	}
-	va_end(ap);
-	return (tpf->length);
+	if (!(str = ft_calloc(2, sizeof(char))))
+		return (NULL);
+	str[0] = c;
+	str[1] = '\0';
+	return (str);
 }

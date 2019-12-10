@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_strrchr.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/13 03:34:11 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/30 20:23:42 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+/*
+** The strchr() function locates the last occurrence of c in the string
+** pointed to by s.
+*/
+
+char	*ft_strrchr(const char *s, int c)
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	size_t	i;
 
-	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
+	i = ft_strlen(s) + 1;
+	while (i--)
 	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
-		i++;
+		if (*(s + i) == c)
+			return ((char *)&(*(s + i)));
 	}
-	va_end(ap);
-	return (tpf->length);
+	return (NULL);
 }

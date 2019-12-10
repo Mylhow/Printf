@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/04 11:22:39 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/10 21:45:08 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,7 +19,11 @@ PATH_INC		=	includes
 
 PF_PATH_SRC		=	srcs
 PF_PATH_OBJ		=	objs
-SRC_LIST		= 	ft_printf.c
+SRC_LIST		= 	ft_printf.c			\
+					lists/pf_initlst.c	\
+					lists/pf_newlst.c	\
+					pf_conv.c			\
+					pf_disp.c			\
 
 INCS_LIST		=	ft_printf.h
 
@@ -36,7 +40,7 @@ LIBFT			=	$(addprefix $(LIBFT_PATH)/, $(LIBFT_NAME))
 
 CC				=	gcc
 INCLUDES		=	-I$(LIBFT_INC) -I$(PATH_INC)
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
 all:	$(LIBFT_NAME) $(NAME)
@@ -44,14 +48,8 @@ all:	$(LIBFT_NAME) $(NAME)
 $(NAME): $(PF_OBJS) 
 	@ ar rcsu $(NAME) $(LIBFT_PATH)/objs/*/*.o $(PF_OBJS)
 
-exec: $(LIBFT_NAME) $(NAME)
-	@ $(CC) $(CFLAGS) $(NAME) main.c
-	@ ./a.out c
-	@ rm -rf ./a.out*
-	@ echo "\033[33;1m-- -- -- Compilation de printf réussis. -- -- --\033[0m"
-
 $(PF_PATH_OBJ)/%.o: $(PF_PATH_SRC)/%.c $(PF_INCS)
-	@ $(shell mkdir -p $(PF_PATH_OBJ))
+	@ $(shell mkdir -p $(PF_PATH_OBJ) $(PF_PATH_OBJ)/lists)
 	@ $(C-O)
 	@ echo "\033[32m V \033[1m$<\033[0;32m\t| \033[1m$@ create !\033[0m"
 	@ echo " \033[36m--CMD-- \033[32m$(C-O) create !\033[0m"
@@ -70,5 +68,9 @@ fclean: clean
 	@ echo "\033[31m > \033[1m$(NAME)/$(NAME).a\033[0;31m delete.\033[0m"
 	@ make -C $(LIBFT_PATH) fclean
 	@ echo "-----------------------------------------"
+
+test $(UT): $(NAME)
+	@ $(CC) -g $(CFLAGS) $(NAME) tests/main_$(UT).c
+	@ ./a.out
 
 re: fclean all

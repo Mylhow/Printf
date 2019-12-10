@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_strjoin.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/21 14:53:41 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/04 09:53:26 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	char	*ptr;
+	size_t	maxsize;
+	size_t	sizes1;
 
-	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
-		i++;
-	}
-	va_end(ap);
-	return (tpf->length);
+	if (s1 == 0 && s2 != 0)
+		return (ft_strdup(s2));
+	if (s2 == 0 && s1 != 0)
+		return (ft_strdup(s1));
+	sizes1 = ft_strlen(s1);
+	maxsize = sizes1 + ft_strlen(s2) + 1;
+	if ((s1 == 0 && s2 == 0) || !(ptr = malloc(maxsize * sizeof(char))))
+		return (NULL);
+	ft_strcat(ptr, s1);
+	ft_strcat(ptr, s2);
+	return (ptr);
 }

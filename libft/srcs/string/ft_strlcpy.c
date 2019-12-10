@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_strlcpy.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/13 05:16:32 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/30 20:23:28 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+/*
+** The ft_strlcpy() function copy strings and copies up to size - 1 characters
+** from the NUL-terminated string src to dst, NUL-terminating the result.
+*/
+
+size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	size_t i;
+	size_t size_src;
 
 	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
+	if (src == 0)
+		return (0);
+	size_src = ft_strlen(src);
+	if (size <= 0)
+		return (size_src);
+	while (i < size - 1 && *(src + i))
 	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
+		*(dst + i) = *(src + i);
 		i++;
 	}
-	va_end(ap);
-	return (tpf->length);
+	*(dst + i) = '\0';
+	return (size_src);
 }

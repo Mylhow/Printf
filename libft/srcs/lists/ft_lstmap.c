@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   ft_lstmap_bonus.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/29 14:03:34 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/30 20:22:06 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/libft.h"
 
-int	ft_printf(const char *str, ...)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	va_list ap;
-	int		i;
-	t_pf	*tpf;
+	t_list *nlst;
+	t_list *clst;
 
-	i = 0;
-	if (!(tpf = pf_newlst(&ap)))
-		return (-1);
-	va_start(ap, str);
-	while (str[i])
+	if (!lst)
+		return (lst);
+	clst = NULL;
+	nlst = NULL;
+	while (lst)
 	{
-		if (str[i] == '%')
+		if (!(clst = ft_lstnew(f(lst->content))))
 		{
-			pf_initlst(&ap, tpf);
-			i += pf_conv(tpf, str + i + 1); // TODO securiser le retour en cas de malloc
+			ft_lstclear(&nlst, del);
+			return (NULL);
 		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf->length++;
-		}
-		i++;
+		ft_lstadd_back(&nlst, clst);
+		lst = lst->next;
 	}
-	va_end(ap);
-	return (tpf->length);
+	return (nlst);
 }
