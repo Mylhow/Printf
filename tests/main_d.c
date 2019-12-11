@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main_d.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 07:45:08 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 23:19:03 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 18:28:43 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -249,17 +249,25 @@ int	main(void)
 
 	printf("[*.*d {123}] ===============\n");
 	NORMAL
-	pers = ft_printf("'%*.*d'", 15, 13, 123);
+	pers = ft_printf("'%0.0d'", 0);
 	printf("[%d]\n", pers);
-	off = printf("'%*.*d'", 15, 13, 123);
+	off = printf("'%0.0d'", 0);
 	printf("[%d]\n", off);
 	NORMAL BOLD RED
 
 	printf("[ *.*d {1234}] ==============\n");
 	NORMAL
-	pers = ft_printf("%s", NULL);
+	pers = ft_printf("'%0.d'", 0);
 	printf("[%d]\n", pers);
-	off = printf("%s", NULL);
+	off = printf("'%0.d'", 0);
+	printf("[%d]\n", off);
+	NORMAL BOLD RED
+
+	printf("[ *.*d {1234}] ==============\n");
+	NORMAL
+	pers = ft_printf("'%05x'", 43);
+	printf("[%d]\n", pers);
+	off = printf("'%05x'", 43);
 	printf("[%d]\n", off);
 	NORMAL BOLD RED
 

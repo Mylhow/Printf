@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_initlst.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:12:37 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 18:28:06 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 16:20:33 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ void	pf_initlst(va_list *ap, t_pf *tpf)
 	tpf->ap = ap;
 	tpf->fmoins = FALSE;
 	tpf->fprecision = FALSE;
-	tpf->vprecision = 0;
+	tpf->vprecision = -1;
 	tpf->fstars = FALSE;
 	tpf->fzero = FALSE;
 	tpf->specifier = ' ';

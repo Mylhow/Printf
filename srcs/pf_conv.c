@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_conv.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 14:36:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 00:28:48 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 16:57:07 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,12 +55,20 @@ int   pf_conv(t_pf *tpf, const char *format)
 		{
 			tpf->vprecision = va_arg(*(tpf->ap), int);
 			i++;
+			if (tpf->vprecision < 0)
+			{
+				tpf->vprecision = 0;
+				tpf->fprecision = 0;
+			}
 		}
 		else
 		{
-			tpf->vprecision = ft_atoi(format + i);
-			while (ft_isdigit(format[i]))
-				i++;
+			if (ft_isdigit(format[i]))
+			{
+				tpf->vprecision = ft_atoi(format + i);
+				while (ft_isdigit(format[i]))
+					i++;
+			}
 		}
 	}
 	tpf->specifier = format[i++];
