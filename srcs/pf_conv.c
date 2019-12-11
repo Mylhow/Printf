@@ -74,6 +74,10 @@ int   pf_conv(t_pf *tpf, const char *format)
 	{
 		disp_char(tpf);
 	}
+	else if (tpf->specifier == 'x' || tpf->specifier == 'X' || tpf->specifier == 'p')
+	{
+		disp_uint(tpf);
+	}
 	
 	return (i);
 }

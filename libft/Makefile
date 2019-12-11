@@ -46,7 +46,8 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c			\
 				lists/ft_lstmap.c									\
 				gnl/get_next_line.c		gnl/get_next_line_utils.c	\
 				maths/ft_power.c		maths/ft_sqrt.c				\
-				numbers/ft_digit.c
+				numbers/ft_digit.c		numbers/ft_digit_base.c		\
+				numbers/ft_itoa_base.c
 
 INCS_LIST	=	libft.h
 

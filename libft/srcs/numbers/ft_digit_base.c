@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_putnbr_base_fd.c                              .::    .:/ .      .::   */
+/*   ft_digit_base.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: nlecaill <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/04 10:58:28 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 11:09:21 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/11 14:32:47 by nlecaill     #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/11 14:34:34 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 #include <stdio.h>
-
-void	ft_putnbr_base(long nbr, int fd, char *base)
+int	ft_digit_base(long num, char *base)
 {
-	if (!base || !ft_strlen(base))
-		return ;
-	if (ft_strichr(base, '+') || ft_strichr(base, '-'))
-		return ;
-	if (nbr < 0)
+	int i;
+	int sbase;
+
+	sbase = ft_strlen(base);
+	i = 0;
+	if (num < 0)
+		i++;
+	if (num == 0)
+		return (1);
+	while (num != 0)
 	{
-		nbr *= -1;
-		ft_putchar_fd('-', fd);
+		num = num / sbase;
+		i++;
 	}
-	if (nbr / ft_strlen(base))
-		ft_putnbr_base(nbr / ft_strlen(base), fd, base);
-	ft_putchar_fd(base[nbr % ft_strlen(base)], fd);
-}
+	return (i);
+}	

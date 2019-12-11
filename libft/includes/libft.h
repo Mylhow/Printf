@@ -54,15 +54,17 @@ char			*ft_strtrim(char const *s1, char const *set);
 void			ft_putnstr_fd(char *str, int n, int fd);
 char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
+char			*ft_itoa_base(int nb, char * charset);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(long n, int fd);
-void			ft_putnbr_base(int nbr, int fd, char *base);
+void			ft_putnbr_base(long nbr, int fd, char *base);
 int				ft_power(int nb, int power);
 int				ft_sqrt(int nb);
 int				ft_digit(long num);
+int				ft_digit_base(long num, char *base);
 
 typedef struct	s_list
 {
