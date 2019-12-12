@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_conv.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 14:36:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 16:57:07 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 20:11:23 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,19 +72,25 @@ int   pf_conv(t_pf *tpf, const char *format)
 		}
 	}
 	tpf->specifier = format[i++];
-	if (tpf->specifier == 'd' || tpf->specifier == 'i')
+	if (tpf->specifier == 'd' || tpf->specifier == 'i' || tpf->specifier == 'u')
 	{
-		disp_int(tpf);
+		disp_int(tpf, sbase(BASE10));
 	}
-	else if (tpf->specifier == 'u')
-		disp_uint(tpf);
-	else if (tpf->specifier == 's' || tpf->specifier == 'c')
+	else if (tpf->specifier == 's')
+	{
+		disp_str(tpf);
+	}
+	if (tpf->specifier == 'c')
 	{
 		disp_char(tpf);
 	}
-	else if (tpf->specifier == 'x' || tpf->specifier == 'X' || tpf->specifier == 'p')
+	else if (tpf->specifier == 'x' || tpf->specifier == 'p')
 	{
-		disp_uint(tpf);
+		disp_int(tpf, sbase(BASE16l));
+	}
+	else if (tpf->specifier == 'X')
+	{
+		disp_int(tpf, sbase(BASE16U));
 	}
 	
 	return (i);

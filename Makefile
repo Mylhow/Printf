@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/10 21:45:08 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/12 13:24:32 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,6 +24,7 @@ SRC_LIST		= 	ft_printf.c			\
 					lists/pf_newlst.c	\
 					pf_conv.c			\
 					pf_disp.c			\
+					pf_utils.c
 
 INCS_LIST		=	ft_printf.h
 

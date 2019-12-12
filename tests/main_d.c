@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main_d.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 07:45:08 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 18:28:43 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 19:42:51 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -263,11 +263,19 @@ int	main(void)
 	printf("[%d]\n", off);
 	NORMAL BOLD RED
 
-	printf("[ *.*d {1234}] ==============\n");
+	printf("[ Test] ==============\n");
 	NORMAL
-	pers = ft_printf("'%05x'", 43);
+	pers = ft_printf("'%-10.5d'", -216);
 	printf("[%d]\n", pers);
-	off = printf("'%05x'", 43);
+	off = printf("'%-10.5d'", -216);
+	printf("[%d]\n", off);
+	NORMAL BOLD RED
+
+	printf("[ Test] ==============\n");
+	NORMAL
+	pers = ft_printf("'%p'", (void *)-1);
+	printf("[%d]\n", pers);
+	off = printf("'%p'", (void *)-1);
 	printf("[%d]\n", off);
 	NORMAL BOLD RED
 
