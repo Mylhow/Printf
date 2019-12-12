@@ -3,16 +3,16 @@
 /*                                                              /             */
 /*   ft_digit_base.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 14:32:47 by nlecaill     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 14:34:34 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 19:54:05 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
-#include <stdio.h>
+
 int	ft_digit_base(long num, char *base)
 {
 	int i;
@@ -30,4 +30,4 @@ int	ft_digit_base(long num, char *base)
 		i++;
 	}
 	return (i);
-}	
+}
