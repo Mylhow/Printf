@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_conv.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 14:36:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 20:11:23 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/13 13:33:58 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,6 +72,7 @@ int   pf_conv(t_pf *tpf, const char *format)
 		}
 	}
 	tpf->specifier = format[i++];
+	//TODO remplace foret de if par tableau de pointeur sur fonction
 	if (tpf->specifier == 'd' || tpf->specifier == 'i' || tpf->specifier == 'u')
 	{
 		disp_int(tpf, sbase(BASE10));
@@ -84,7 +85,7 @@ int   pf_conv(t_pf *tpf, const char *format)
 	{
 		disp_char(tpf);
 	}
-	else if (tpf->specifier == 'x' || tpf->specifier == 'p')
+	else if (tpf->specifier == 'x')
 	{
 		disp_int(tpf, sbase(BASE16l));
 	}
@@ -92,6 +93,13 @@ int   pf_conv(t_pf *tpf, const char *format)
 	{
 		disp_int(tpf, sbase(BASE16U));
 	}
-	
+	else if (tpf->specifier == '%')
+	{
+		disp_percent(tpf);
+	}
+	else if (tpf->specifier == 'p')
+	{
+		disp_ptr(tpf, sbase(BASE16l));
+	}
 	return (i);
 }

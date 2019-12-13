@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libft.h                                          .::    .:/ .      .::   */
+/*   ft_digit_ul_base.c                               .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/13 11:44:22 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/11 14:32:47 by nlecaill     #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/13 13:46:38 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include "libftstring.h"
-# include "libftnumbers.h"
-# include "libftmem.h"
-# include "libftput.h"
-# include "libftmaths.h"
-# include "libftgnl.h"
-# include "libftlst.h"
-# include <stdlib.h>
-#endif
+#include "includes/libft.h"
+
+int	ft_digit_ul_base(unsigned long num, char *base)
+{
+	int i;
+	int sbase;
+
+	sbase = ft_strlen(base);
+	i = 0;
+	if (num == 0)
+		return (1);
+	while (num != 0)
+	{
+		num = num / sbase;
+		i++;
+	}
+	return (i);
+}

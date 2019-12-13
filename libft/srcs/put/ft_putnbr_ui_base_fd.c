@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libft.h                                          .::    .:/ .      .::   */
+/*   ft_putnbr_ui_base_fd.c                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/13 11:44:22 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/04 10:58:28 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/13 13:43:54 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include "libftstring.h"
-# include "libftnumbers.h"
-# include "libftmem.h"
-# include "libftput.h"
-# include "libftmaths.h"
-# include "libftgnl.h"
-# include "libftlst.h"
-# include <stdlib.h>
-#endif
+#include "includes/libft.h"
+#include <stdio.h>
+
+void	ft_putnbr_ul_base_fd(unsigned long nbr, int fd, char *base)
+{
+	if (!base || !ft_strlen(base))
+		return ;
+	if (ft_strichr(base, '+') || ft_strichr(base, '-'))
+		return ;
+	if (nbr / ft_strlen(base))
+		ft_putnbr_ul_base_fd(nbr / ft_strlen(base), fd, base);
+	ft_putchar_fd(base[nbr % ft_strlen(base)], fd);
+}

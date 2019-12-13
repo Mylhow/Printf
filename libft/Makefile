@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
+#    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/12 20:09:44 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/13 13:47:17 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -29,9 +29,8 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c			\
 				string/ft_strnstr.c		string/ft_strdup.c			\
 				string/ft_substr.c		string/ft_strjoin.c			\
 				string/ft_strtrim.c		string/ft_split.c			\
-				string/ft_itoa.c		string/ft_strmapi.c			\
-				string/ft_strcat.c		string/ft_strichr.c			\
-				string/ft_chartostr.c								\
+				string/ft_strmapi.c		string/ft_strcat.c			\
+				string/ft_strichr.c		string/ft_chartostr.c		\
 				mem/ft_memset.c			mem/ft_bzero.c				\
 				mem/ft_memcpy.c			mem/ft_memccpy.c			\
 				mem/ft_memmove.c		mem/ft_memchr.c				\
@@ -39,6 +38,7 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c			\
 				put/ft_putchar_fd.c		put/ft_putstr_fd.c			\
 				put/ft_putendl_fd.c		put/ft_putnbr_fd.c			\
 				put/ft_putnbr_base_fd.c	put/ft_putnstr_fd.c			\
+				put/ft_putnbr_ui_base_fd.c							\
 				lists/ft_lstnew.c		lists/ft_lstadd_front.c		\
 				lists/ft_lstsize.c		lists/ft_lstlast.c			\
 				lists/ft_lstadd_back.c	lists/ft_lstdelone.c		\
@@ -47,6 +47,7 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c			\
 				gnl/get_next_line.c		gnl/get_next_line_utils.c	\
 				maths/ft_power.c		maths/ft_sqrt.c				\
 				numbers/ft_digit.c		numbers/ft_digit_base.c		\
+				numbers/ft_digit_ul_base.c numbers/ft_itoa.c		\
 				numbers/ft_itoa_base.c
 
 INCS_LIST	=	libft.h

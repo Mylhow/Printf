@@ -3,15 +3,13 @@
 /*                                                              /             */
 /*   pf_disp.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 17:43:51 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 20:15:09 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/13 13:47:29 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
-
-//REVIEW mettre %d dans disp_uint
 
 #include "ft_printf.h"
 #include <limits.h>
@@ -67,7 +65,7 @@ void	disp_str(t_pf *tpf)
 			ft_putchar_fd(' ', 1);
 	}
 }
-//010.5 -216
+
 //TODO mettre %p dans une autre fonction avec 2 putnbr_base 1unsigned long pour %p et 1 long long pour le reste
 void    disp_int(t_pf *tpf, char *base)
 {
@@ -76,25 +74,79 @@ void    disp_int(t_pf *tpf, char *base)
 	int espace;
 	int zero;
 
-	if (tpf->specifier == 'u' || tpf->specifier == 'x' || tpf->specifier == 'X' || tpf->specifier == 'p')
-		val = va_arg(*(tpf->ap), long);//-216
+	if (tpf->specifier == 'u' || tpf->specifier == 'x' || tpf->specifier == 'X')
+		val = va_arg(*(tpf->ap), long);
 	else
-		val = va_arg(*(tpf->ap), int);//3267
- 	argsize = ft_digit_base(val, base);//4
-	(tpf->specifier == 'p') ? argsize += 2 : 0;
-	zero = (tpf->vprecision < 0) ? 0 : tpf->vprecision - argsize;//-1-3=-4
+		val = va_arg(*(tpf->ap), int);
+ 	argsize = ft_digit_base(val, base);
+	zero = (tpf->vprecision < 0) ? 0 : tpf->vprecision - argsize;
 	(tpf->vprecision > argsize && val < 0) ? zero++ : 0;
-	espace = pf_prec(tpf, val, argsize);//0-3=-3
+	espace = pf_prec(tpf, val, argsize);
 	if (tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0)
 	{
 		tpf->length--;
 		espace++;
 	}
-	//printf("[%d] [%d] [%d] [%d] [%d]", tpf->fzero, tpf->width, tpf->vprecision, espace, argsize);
 	if (tpf->fzero && tpf->width > tpf->vprecision)
 	{
-		(espace > 0) ? zero += espace : 0;//zero = 4
-		espace = 0; //espace = 0
+		(espace > 0) ? zero += espace : 0;
+		espace = 0;
+	}
+	tpf->length += (zero < 0) ? 0 : zero;
+	tpf->length += (espace < 0) ? 0 : espace;
+	tpf->length += argsize;
+	if (tpf->fmoins == FALSE)
+	{
+		while (espace-- > 0)
+			ft_putchar_fd(' ', 1);
+		if (val < 0)
+		{
+			val *= -1;
+			ft_putchar_fd('-', 1);
+		}
+		while (zero-- > 0)
+			ft_putchar_fd('0', 1);
+		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
+			ft_putnbr_base_fd(val, 1, base);
+	}
+	else
+	{
+		if (val < 0)
+		{
+			val *= -1;
+			ft_putchar_fd('-', 1);
+		}
+		while (zero-- > 0)
+			ft_putchar_fd('0', 1);
+		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
+			ft_putnbr_base_fd(val, 1, base);
+		while (espace-- > 0)
+			ft_putchar_fd(' ', 1);   
+	}
+}
+
+void	disp_ptr(t_pf *tpf, char *base)
+{
+	unsigned long val;
+	int argsize;
+	int espace;
+	int zero;
+
+	val = va_arg(*(tpf->ap), unsigned long);
+ 	argsize = ft_digit_ul_base(val, base);
+	(tpf->specifier == 'p') ? argsize += 2 : 0;
+	zero = (tpf->vprecision < 0) ? 0 : tpf->vprecision - argsize;
+	(tpf->vprecision > argsize) ? zero++ : 0;
+	espace = pf_prec(tpf, val, argsize);
+	if (tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0)
+	{
+		tpf->length--;
+		espace++;
+	}
+	if (tpf->fzero && tpf->width > tpf->vprecision)
+	{
+		(espace > 0) ? zero += espace : 0;
+		espace = 0;
 	}
 	tpf->length += (zero < 0) ? 0 : zero;
 	tpf->length += (espace < 0) ? 0 : espace;
@@ -105,29 +157,19 @@ void    disp_int(t_pf *tpf, char *base)
 			ft_putchar_fd(' ', 1);
 		if (tpf->specifier == 'p')
 			ft_putstr_fd("0x", 1);
-		if (val < 0)
-		{
-			val *= -1;
-			ft_putchar_fd('-', 1);
-		}
 		while (zero-- > 0)
 			ft_putchar_fd('0', 1);
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
-			ft_putnbr_base(val, 1, base);
+			ft_putnbr_ul_base_fd(val, 1, base);
 	}
 	else
 	{
 		if (tpf->specifier == 'p')
 			ft_putstr_fd("0x", 1);
-		if (val < 0)
-		{
-			val *= -1;
-			ft_putchar_fd('-', 1);
-		}
 		while (zero-- > 0)
 			ft_putchar_fd('0', 1);
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
-			ft_putnbr_base(val, 1, base);
+			ft_putnbr_ul_base_fd(val, 1, base);
 		while (espace-- > 0)
 			ft_putchar_fd(' ', 1);   
 	}

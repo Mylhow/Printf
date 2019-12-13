@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstadd_front_bonus.c                          .::    .:/ .      .::   */
+/*   ft_lstadd_front.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 08:23:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/30 20:21:53 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/13 11:42:33 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-void	ft_lstadd_front(t_list **alst, t_list *new)
+void	ft_lstadd_front(t_list **alst, t_list *enew)
 {
-	if (!alst || !new)
+	if (!alst || !enew)
 		return ;
-	new->next = *alst;
-	*alst = new;
+	enew->next = *alst;
+	*alst = enew;
 }
