@@ -6,12 +6,13 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 07:45:08 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 21:14:46 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 20:22:21 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <locale.h>
 
 #define RED printf("\033[31m");
 #define GREEN printf("\033[32m");
@@ -118,11 +119,12 @@ int	main(void)
 	printf("[%d]\n", off);
 	NORMAL BOLD RED
 
+	//setlocale(LC_ALL, "en_US");
 	printf("[TEST] ================\n");
 	NORMAL
-	pers = ft_printf("'%-10.3s'", "Chapeau");
+	pers = ft_printf("'% d'", -1000);
 	printf("[%d]\n", pers);
-	off = printf("'%-10.3s'", "Chapeau");
+	off = printf("'% d'", -1000);
 	printf("[%d]\n", off);
 	NORMAL BOLD RED
 
