@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 17:13:27 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 16:59:05 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 19:50:57 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,5 +30,7 @@ t_pf	*pf_newlst(va_list *ap)
 	tpf->zero = 0;
 	tpf->width = 0;
 	tpf->length = 0;
+	tpf->fplus = FALSE;
+	tpf->fdiese = FALSE;
 	return (tpf);
 }

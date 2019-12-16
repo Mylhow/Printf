@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 05:36:15 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 17:27:47 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 19:50:29 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,6 +24,8 @@ typedef struct	s_pf
 	enum e_boolean	fstars;
 	enum e_boolean	fmoins;
 	enum e_boolean	fprecision;
+	enum e_boolean	fdiese;
+	enum e_boolean	fplus;
 	int				vprecision;
 	int				width;
 	int				whitespace;

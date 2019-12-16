@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:05:40 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 15:32:31 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 20:02:58 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,14 +18,21 @@ static void		disp_int_2(t_pf *tpf, char *base, long val)
 	if (tpf->fmoins == FALSE)
 	{
 		ft_putcharec_fd(' ', tpf->whitespace, 1);
+		if (tpf->fdiese)
+			ft_putstr_fd("0x", 1);
 		if (val < 0)
 		{
 			val *= -1;
 			ft_putchar_fd('-', 1);
 		}
+		else if (tpf->fplus)
+		{
+			ft_putchar_fd('+', 1);
+		}
 		ft_putcharec_fd('0', tpf->zero, 1);
+		
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
-			ft_putnbr_base_fd(val, 1, base);
+				ft_putnbr_base_fd(val, 1, base);
 	}
 	else
 	{
@@ -34,6 +41,12 @@ static void		disp_int_2(t_pf *tpf, char *base, long val)
 			val *= -1;
 			ft_putchar_fd('-', 1);
 		}
+		else if (tpf->fplus)
+		{
+			ft_putchar_fd('+', 1);
+		}
+		if (tpf->fdiese)
+			ft_putstr_fd("0x", 1);
 		ft_putcharec_fd('0', tpf->zero, 1);
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
 			ft_putnbr_base_fd(val, 1, base);
@@ -63,6 +76,28 @@ void			disp_int(t_pf *tpf, char *base)
 	{
 		(tpf->whitespace > 0) ? tpf->zero += tpf->whitespace : 0;
 		tpf->whitespace = 0;
+	}
+	if (tpf->fdiese || tpf->fplus) 
+	{
+		if (tpf->fplus && val > 0)
+		{
+			length_calc(tpf, 1, 1);
+		}
+		else if (tpf->fdiese)
+			length_calc(tpf, 1, 2);
+		if (tpf->width > tpf->vprecision)
+		{
+			if (tpf->fplus)
+			{
+				(val > 0) ? tpf->whitespace -= 1 : 0;
+				(tpf->fzero) ? tpf->zero -= 1 : 0;
+			}
+			else
+			{
+				tpf->whitespace -= 2;
+				tpf->zero -= 2;
+			}
+		}
 	}
 	length_calc(tpf, 3, tpf->whitespace, tpf->zero, argsize);
 	disp_int_2(tpf, base, val);

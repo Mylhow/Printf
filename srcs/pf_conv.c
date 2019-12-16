@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 14:36:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 18:04:08 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 19:50:07 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -86,14 +86,12 @@ int	pf_conv(t_pf *tpf, const char *format)
 	int	i;
 
 	i = 0;
-	while (format[i] == '-')
+	while (ft_strstr(&format[i], "-+0#"))
 	{
-		tpf->fmoins = TRUE;
-		i++;
-	}
-	while (format[i] == '0')
-	{
-		tpf->fzero = TRUE;
+		(format[i] == '-') ? tpf->fmoins = TRUE : 0;
+		(format[i] == '#') ? tpf->fdiese = TRUE : 0;
+		(format[i] == '0') ? tpf->fzero = TRUE : 0;
+		(format[i] == '+') ? tpf->fplus = TRUE : 0;
 		i++;
 	}
 	return (pf_conv2(tpf, format, i));
