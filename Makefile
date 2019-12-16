@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/12 13:24:32 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/16 18:04:47 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,11 +19,11 @@ PATH_INC		=	includes
 
 PF_PATH_SRC		=	srcs
 PF_PATH_OBJ		=	objs
-SRC_LIST		= 	ft_printf.c			\
-					lists/pf_initlst.c	\
-					lists/pf_newlst.c	\
-					pf_conv.c			\
-					pf_disp.c			\
+SRC_LIST		= 	ft_printf.c				pf_conv.c					\
+					lists/pf_initlst.c		lists/pf_newlst.c			\
+					display/pf_disp.c		display/pf_disp_int.c 		\
+					display/pf_disp_char.c	display/pf_disp_string.c	\
+					display/pf_disp_ptr.c	display/pf_disp_perc.c		\
 					pf_utils.c
 
 INCS_LIST		=	ft_printf.h
@@ -50,7 +50,7 @@ $(NAME): $(PF_OBJS)
 	@ ar rcsu $(NAME) $(LIBFT_PATH)/objs/*/*.o $(PF_OBJS)
 
 $(PF_PATH_OBJ)/%.o: $(PF_PATH_SRC)/%.c $(PF_INCS)
-	@ $(shell mkdir -p $(PF_PATH_OBJ) $(PF_PATH_OBJ)/lists)
+	@ $(shell mkdir -p $(PF_PATH_OBJ) $(PF_PATH_OBJ)/lists $(PF_PATH_OBJ)/display)
 	@ $(C-O)
 	@ echo "\033[32m V \033[1m$<\033[0;32m\t| \033[1m$@ create !\033[0m"
 	@ echo " \033[36m--CMD-- \033[32m$(C-O) create !\033[0m"

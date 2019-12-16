@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_itoa_base.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 13:32:58 by nlecaill     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 13:40:15 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 15:51:57 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "includes/libft.h"
 
-static int		ft_lenght(int n, int base)
+static int		ft_length(int n, int base)
 {
 	int i;
 
@@ -38,17 +38,16 @@ char			*ft_itoa_base(int n, char *charset)
 	int		sign;
 	int		base;
 
-	base = ft_strlen(charset);	
+	base = ft_strlen(charset);
 	sign = 1;
-	i = ft_lenght(n, base);
-	if (!(str = malloc(sizeof(char) * i + 1)))
+	i = ft_length(n, base);
+	if (!(str = ft_calloc(i + 1, sizeof(char))))
 		return (NULL);
 	if (n < 0)
 	{
 		str[0] = '-';
 		sign = -1;
 	}
-	str[i] = '\0';
 	i--;
 	if (n == 0)
 		str[i] = '0';

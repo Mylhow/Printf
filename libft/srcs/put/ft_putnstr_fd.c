@@ -6,18 +6,18 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/10 13:36:09 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 13:37:37 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 15:49:29 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-void    ft_putnstr_fd(char *str, int n, int fd)
+void	ft_putnstr_fd(char *str, int n, int fd)
 {
-    int i;
+	int i;
 
-    i = -1;
-    while (++i < n)
-        ft_putchar_fd(str[i], fd);
+	i = -1;
+	while (++i < n)
+		ft_putchar_fd(str[i], fd);
 }

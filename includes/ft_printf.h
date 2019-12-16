@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_printf.h                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 05:36:15 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/13 13:40:11 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 17:27:47 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,19 +17,6 @@
 # include <stdarg.h>
 # include "../libft/includes/libft.h"
 
-enum	e_boolean
-{
-	TRUE = 1,
-	FALSE = 0
-};
-
-enum	e_base
-{
-	BASE10 = 0,
-	BASE16U = 1,
-	BASE16l = 2
-};
-
 typedef struct	s_pf
 {
 	va_list			*ap;
@@ -39,6 +26,8 @@ typedef struct	s_pf
 	enum e_boolean	fprecision;
 	int				vprecision;
 	int				width;
+	int				whitespace;
+	int				zero;
 	char			specifier;
 	int				length;
 }				t_pf;
@@ -54,6 +43,7 @@ void			disp_int(t_pf *tpf, char *base);
 void			disp_ptr(t_pf *tpf, char *base);
 void			disp_percent(t_pf *tpf);
 int				pf_prec(t_pf *tpf, long val, int argsize);
-char			*sbase(enum e_base b);
+void			length_calc(t_pf *tpf, int count, ...);
+void			init_tab(void);
 
 #endif
