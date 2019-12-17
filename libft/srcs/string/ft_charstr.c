@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_base.c                                        .::    .:/ .      .::   */
+/*   ft_charstr.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/16 16:02:35 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 19:16:53 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/17 19:40:35 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/17 19:43:15 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-char	*ft_sbase(enum e_base b)
+int		ft_charstr(const char hay, const char *needle)
 {
-	char *str[3];
+	int i;
 
-	str[0] = "0123456789";
-	str[1] = "0123456789ABCDEF";
-	str[2] = "0123456789abcdef";
-	return (str[b]);
+	i = 0;
+	if (!hay || !needle)
+		return (0);
+	while (needle[i])
+	{
+		if (hay == needle[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }

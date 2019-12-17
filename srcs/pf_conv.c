@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_conv.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 14:36:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 19:50:07 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 21:46:55 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,11 +15,11 @@
 
 int	pf_conv4(t_pf *tpf, int i)
 {
-	if (tpf->specifier == 'd' || tpf->specifier == 'i' || tpf->specifier == 'u')
+	if (ft_charstr(tpf->specifier, "diu"))
 		disp_int(tpf, ft_sbase(BASE10));
 	else if (tpf->specifier == 's')
 		disp_str(tpf);
-	if (tpf->specifier == 'c')
+	else if (tpf->specifier == 'c')
 		disp_char(tpf);
 	else if (tpf->specifier == 'x')
 		disp_int(tpf, ft_sbase(BASE16l));
@@ -86,12 +86,13 @@ int	pf_conv(t_pf *tpf, const char *format)
 	int	i;
 
 	i = 0;
-	while (ft_strstr(&format[i], "-+0#"))
+	while (ft_charstr(format[i], "-+0# "))
 	{
 		(format[i] == '-') ? tpf->fmoins = TRUE : 0;
 		(format[i] == '#') ? tpf->fdiese = TRUE : 0;
 		(format[i] == '0') ? tpf->fzero = TRUE : 0;
 		(format[i] == '+') ? tpf->fplus = TRUE : 0;
+		(format[i] == ' ') ? tpf->fspace = TRUE : 0;
 		i++;
 	}
 	return (pf_conv2(tpf, format, i));

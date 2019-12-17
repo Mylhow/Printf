@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_disp_perc.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:55:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 18:19:42 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 12:36:34 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ void	disp_percent(t_pf *tpf)
 {
 	int nb_space;
 
-	tpf->width > 0 ? (nb_space = tpf->width - 1) : (nb_space = tpf->width);
+	nb_space = (tpf->width > 0) ? tpf->width - 1 : tpf->width;
 	tpf->length += nb_space + 1;
 	if (!tpf->fmoins)
 	{

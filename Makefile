@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
+#    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/16 18:04:47 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/17 21:48:49 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,7 +20,7 @@ PATH_INC		=	includes
 PF_PATH_SRC		=	srcs
 PF_PATH_OBJ		=	objs
 SRC_LIST		= 	ft_printf.c				pf_conv.c					\
-					lists/pf_initlst.c		lists/pf_newlst.c			\
+					lists/pf_initlst.c									\
 					display/pf_disp.c		display/pf_disp_int.c 		\
 					display/pf_disp_char.c	display/pf_disp_string.c	\
 					display/pf_disp_ptr.c	display/pf_disp_perc.c		\
@@ -71,7 +71,7 @@ fclean: clean
 	@ echo "-----------------------------------------"
 
 test $(UT): $(NAME)
-	@ $(CC) -g $(CFLAGS) $(NAME) tests/main_$(UT).c
+	@ $(CC) -g3 $(CFLAGS) $(NAME) tests/main_$(UT).c
 	@ ./a.out
 
 re: fclean all
