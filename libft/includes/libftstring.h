@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 19:42:16 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 03:10:14 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ char			*ft_strcat(char *s1, const char *s2);
 char			*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
 int				ft_strstr(const char *hay, const char *needle);
-int             ft_charstr(const char hay, const char *needle);
+int				ft_charstr(const char hay, const char *needle);
 char			*ft_chartostr(int c);
 int				ft_atoi(const char *str);
 char			*ft_strdup(const char *s1);

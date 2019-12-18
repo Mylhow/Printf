@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/17 19:42:41 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/18 02:22:20 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -40,6 +40,7 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c			\
 				put/ft_putstr_fd.c		put/ft_putendl_fd.c			\
 				put/ft_putnbr_fd.c		put/ft_putnbr_base_fd.c		\
 				put/ft_putnstr_fd.c		put/ft_putnbr_ui_base_fd.c	\
+				put/ft_putnbr_format_fd.c							\
 				lists/ft_lstnew.c		lists/ft_lstadd_front.c		\
 				lists/ft_lstsize.c		lists/ft_lstlast.c			\
 				lists/ft_lstadd_back.c	lists/ft_lstdelone.c		\
@@ -49,7 +50,8 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c			\
 				maths/ft_power.c		maths/ft_sqrt.c				\
 				numbers/ft_digit.c		numbers/ft_digit_base.c		\
 				numbers/ft_digit_ul_base.c numbers/ft_itoa.c		\
-				numbers/ft_itoa_base.c	utils/ft_base.c
+				numbers/ft_itoa_base.c	numbers/ft_digit_format_base.c	\
+				utils/ft_base.c
 
 INCS_LIST	=	libft.h
 

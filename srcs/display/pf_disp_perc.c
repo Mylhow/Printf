@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:55:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 12:36:34 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 05:23:02 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ void	disp_percent(t_pf *tpf)
 	{
 		while (nb_space--)
 		{
-			if (tpf->fzero)
+			if (tpf->fzero || tpf->zero == -1)
 				ft_putchar_fd('0', 1);
 			else
 				ft_putchar_fd(' ', 1);

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_disp_ptr.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:38:37 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 15:48:41 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 23:43:17 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ void		disp_ptr(t_pf *tpf, char *base)
 	val = va_arg(*(tpf->ap), unsigned long);
 	argsize = ft_digit_ul_base(val, base);
 	(tpf->specifier == 'p') ? argsize += 2 : 0;
-	tpf->zero = (tpf->vprecision < 0) ? 0 : tpf->vprecision - argsize;
+	tpf->zero = (tpf->fprecision) ? tpf->vprecision - argsize : 0;
 	(tpf->vprecision > argsize) ? tpf->zero++ : 0;
 	tpf->whitespace = pf_prec(tpf, val, argsize);
 	if (tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0)

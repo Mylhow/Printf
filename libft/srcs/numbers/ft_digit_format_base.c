@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libftnumbers.h                                   .::    .:/ .      .::   */
+/*   ft_digit_format_base.c                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 03:10:31 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/18 02:20:32 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/18 03:08:35 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBFTNUMBERS_H
-# define LIBFTNUMBERS_H
+#include "includes/libft.h"
+#include <stdio.h>
 
-char			*ft_itoa(int n);
-char			*ft_itoa_base(int nb, char *charset);
-int				ft_digit(long num);
-int				ft_digit_base(long num, char *base);
-int				ft_digit_ul_base(unsigned long num, char *base);
-int				ft_digit_format_base(long num, char *base);
-#endif
+int	ft_digit_format_base(long num, char *base)
+{
+	int i;
+	int	j;
+	int moins;
+	int sbase;
+
+	moins = 0;
+	j = 0;
+	sbase = ft_strlen(base);
+	i = 0;
+	if (num < 0)
+		moins = 1;
+	if (num == 0)
+		return (1);
+	while (num != 0)
+	{
+		num = num / sbase;
+		if (i % 3 == 1 && num / sbase != 0 && i > 0)
+			j++;
+		i++;
+	}
+	return (i + j + moins);
+}

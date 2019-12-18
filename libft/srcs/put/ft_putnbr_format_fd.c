@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libftnumbers.h                                   .::    .:/ .      .::   */
+/*   ft_putnbr_format_fd.c                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 03:10:31 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/18 01:42:15 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/18 01:50:27 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBFTNUMBERS_H
-# define LIBFTNUMBERS_H
+#include "includes/libft.h"
 
-char			*ft_itoa(int n);
-char			*ft_itoa_base(int nb, char *charset);
-int				ft_digit(long num);
-int				ft_digit_base(long num, char *base);
-int				ft_digit_ul_base(unsigned long num, char *base);
-int				ft_digit_format_base(long num, char *base);
-#endif
+static void	ft_putnbr_format_rec(long n, int count, int fd)
+{
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n *= -1;
+	}
+	if (n > 9)
+		ft_putnbr_format_rec(n / 10, count + 1, fd);
+	ft_putchar_fd((n % 10) + '0', fd);
+	if (count % 3 == 1 && count != 1)
+		ft_putchar_fd(',', fd);
+}
+
+void		ft_putnbr_format_fd(long n, int fd)
+{
+	ft_putnbr_format_rec(n, 1, fd);
+}

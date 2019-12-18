@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 14:36:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 21:46:55 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 05:24:12 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,8 @@
 
 int	pf_conv4(t_pf *tpf, int i)
 {
+	if (tpf->specifier == '%' && tpf->fprecision && tpf->vprecision == -1)
+		tpf->zero = -1;
 	if (ft_charstr(tpf->specifier, "diu"))
 		disp_int(tpf, ft_sbase(BASE10));
 	else if (tpf->specifier == 's')
@@ -45,8 +47,8 @@ int	pf_conv3(t_pf *tpf, const char *format, int i)
 			i++;
 			if (tpf->vprecision < 0)
 			{
-				tpf->vprecision = 0;
-				tpf->fprecision = 0;
+				tpf->vprecision = -1;
+				tpf->fprecision = FALSE;
 			}
 		}
 		else if (ft_isdigit(format[i]))
@@ -86,13 +88,14 @@ int	pf_conv(t_pf *tpf, const char *format)
 	int	i;
 
 	i = 0;
-	while (ft_charstr(format[i], "-+0# "))
+	while (ft_charstr(format[i], "-+0# \'"))
 	{
 		(format[i] == '-') ? tpf->fmoins = TRUE : 0;
 		(format[i] == '#') ? tpf->fdiese = TRUE : 0;
 		(format[i] == '0') ? tpf->fzero = TRUE : 0;
 		(format[i] == '+') ? tpf->fplus = TRUE : 0;
 		(format[i] == ' ') ? tpf->fspace = TRUE : 0;
+		(format[i] == '\'') ? tpf->fapostrophe = TRUE : 0;
 		i++;
 	}
 	return (pf_conv2(tpf, format, i));

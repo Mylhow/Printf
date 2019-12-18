@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_disp_string.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:35:23 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 17:26:01 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 05:20:16 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,10 @@ void	disp_str(t_pf *tpf)
 
 	if (!(value = va_arg(*(tpf->ap), char *)))
 		value = ft_strdup("(null)");
-	argsize = ft_strlen(value);
+	if (tpf->fprecision && tpf->vprecision == -1)
+		argsize = 0;
+	else
+		argsize = ft_strlen(value);
 	tronc = pf_prec(tpf, 0, argsize);
 	(tpf->width > 0) ? tpf->whitespace = tpf->width - tronc : 0;
 	length_calc(tpf, 2, tronc, tpf->whitespace);

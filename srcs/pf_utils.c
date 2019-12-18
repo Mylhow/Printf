@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 13:15:36 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 19:45:17 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 22:54:38 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ int	pf_prec(t_pf *tpf, long val, int argsize)
 		length = tpf->width;
 		length -= (tpf->vprecision <= argsize) ? argsize : tpf->vprecision;
 		length -= (tpf->width > tpf->vprecision &&
-					tpf->vprecision > argsize && val < 0) ? 1 : 0;
+					tpf->vprecision >= argsize && val < 0) ? 1 : 0;
 	}
 	return (length);
 }
