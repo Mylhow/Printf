@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/17 21:48:49 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/18 16:25:24 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -72,6 +72,6 @@ fclean: clean
 
 test $(UT): $(NAME)
 	@ $(CC) -g3 $(CFLAGS) $(NAME) tests/main_$(UT).c
-	@ ./a.out
+	@ valgrind ./a.out
 
 re: fclean all

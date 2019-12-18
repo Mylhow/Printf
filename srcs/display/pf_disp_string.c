@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:35:23 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 05:20:16 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 16:28:00 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,12 +15,17 @@
 
 void	disp_str(t_pf *tpf)
 {
-	int		argsize;
-	char	*value;
-	int		tronc;
+	int				argsize;
+	char			*value;
+	int				tronc;
+	enum e_boolean	b_null;
 
+	b_null = FALSE;
 	if (!(value = va_arg(*(tpf->ap), char *)))
+	{
+		b_null = TRUE;
 		value = ft_strdup("(null)");
+	}
 	if (tpf->fprecision && tpf->vprecision == -1)
 		argsize = 0;
 	else
@@ -38,4 +43,5 @@ void	disp_str(t_pf *tpf)
 		ft_putnstr_fd(value, tronc, 1);
 		ft_putcharec_fd(' ', tpf->whitespace, 1);
 	}
+	(b_null) ? free(value) : 0;
 }
