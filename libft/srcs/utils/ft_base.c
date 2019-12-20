@@ -15,10 +15,11 @@
 
 char	*ft_sbase(enum e_base b)
 {
-	char *str[3];
+	char *str[4];
 
 	str[0] = "0123456789";
 	str[1] = "0123456789ABCDEF";
 	str[2] = "0123456789abcdef";
+	str[3] = "01234567";
 	return (str[b]);
 }

@@ -24,6 +24,10 @@ void	pf_initlst(va_list *ap, t_pf *tpf)
 	tpf->fdiese = FALSE;
 	tpf->fspace = FALSE;
 	tpf->fapostrophe = FALSE;
+	tpf->fh = FALSE;
+	tpf->fhh = FALSE;
+	tpf->fl = FALSE;
+	tpf->fll = FALSE;
 	tpf->vprecision = -1;
 	tpf->whitespace = 0;
 	tpf->zero = 0;

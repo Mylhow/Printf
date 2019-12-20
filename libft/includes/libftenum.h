@@ -24,7 +24,8 @@ enum	e_base
 {
 	BASE10 = 0,
 	BASE16U = 1,
-	BASE16l = 2
+	BASE16l = 2,
+	BASE8 = 3
 };
 
 char			*ft_sbase(enum e_base b);

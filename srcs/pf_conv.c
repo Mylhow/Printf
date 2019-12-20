@@ -31,6 +31,10 @@ int	pf_conv4(t_pf *tpf, int i)
 		disp_percent(tpf);
 	else if (tpf->specifier == 'p')
 		disp_ptr(tpf, ft_sbase(BASE16l));
+	else if (tpf->specifier == 'o')
+		disp_int(tpf, ft_sbase(BASE8));
+	else if (tpf->specifier == 'f')
+		disp_float(tpf);
 	return (i);
 }
 
@@ -57,6 +61,19 @@ int	pf_conv3(t_pf *tpf, const char *format, int i)
 			while (ft_isdigit(format[i]))
 				i++;
 		}
+	}
+	
+	if ((format[i] == 'h') ? tpf->fh = TRUE : 0)
+	{
+		i++;
+		(format[i] == 'h') ? tpf->fhh = TRUE : i--;
+		i++;
+	}
+	if ((format[i] == 'l') ? tpf->fl = TRUE : 0)
+	{
+		i++;
+		(format[i] == 'l') ? tpf->fll = TRUE : i--;
+		i++;
 	}
 	tpf->specifier = format[i++];
 	return (pf_conv4(tpf, i));

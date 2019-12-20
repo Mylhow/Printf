@@ -118,7 +118,7 @@ void			disp_int(t_pf *tpf, char *base)
 	long	val;
 	int		argsize;
 
-	if (ft_charstr(tpf->specifier, "xX"))
+	if (ft_charstr(tpf->specifier, "xX") || (tpf->specifier == 'd' && tpf->fl) || (tpf->specifier == 'i' && tpf->fl))
 		val = va_arg(*(tpf->ap), long);
 	else if (tpf->specifier == 'u')
 		val = va_arg(*(tpf->ap), unsigned long);
