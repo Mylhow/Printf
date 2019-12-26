@@ -24,6 +24,7 @@ SRC_LIST		= 	ft_printf.c				pf_conv.c					\
 					display/pf_disp.c		display/pf_disp_int.c 		\
 					display/pf_disp_char.c	display/pf_disp_string.c	\
 					display/pf_disp_ptr.c	display/pf_disp_perc.c		\
+					display/pf_disp_float.c display/pf_disp_Lfloat.c	\
 					pf_utils.c
 
 INCS_LIST		=	ft_printf.h
@@ -72,6 +73,6 @@ fclean: clean
 
 test $(UT): $(NAME)
 	@ $(CC) -g3 $(CFLAGS) $(NAME) tests/main_$(UT).c
-	@ valgrind ./a.out
+	@ ./a.out
 
 re: fclean all

@@ -34,7 +34,7 @@ int	pf_conv4(t_pf *tpf, int i)
 	else if (tpf->specifier == 'o')
 		disp_int(tpf, ft_sbase(BASE8));
 	else if (tpf->specifier == 'f')
-		disp_float(tpf);
+		tpf->fL ? disp_Lfloat(tpf) : disp_float(tpf);
 	return (i);
 }
 
@@ -73,6 +73,11 @@ int	pf_conv3(t_pf *tpf, const char *format, int i)
 	{
 		i++;
 		(format[i] == 'l') ? tpf->fll = TRUE : i--;
+		i++;
+	}
+	if (format[i] == 'L')
+	{
+		tpf->fL = TRUE;
 		i++;
 	}
 	tpf->specifier = format[i++];

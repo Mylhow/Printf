@@ -28,6 +28,7 @@ void	pf_initlst(va_list *ap, t_pf *tpf)
 	tpf->fhh = FALSE;
 	tpf->fl = FALSE;
 	tpf->fll = FALSE;
+	tpf->fL = FALSE;
 	tpf->vprecision = -1;
 	tpf->whitespace = 0;
 	tpf->zero = 0;

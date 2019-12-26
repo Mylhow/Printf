@@ -32,6 +32,7 @@ typedef struct	s_pf
 	enum e_boolean	fhh;
 	enum e_boolean	fl;
 	enum e_boolean	fll;
+	enum e_boolean	fL;
 	int				vprecision;
 	int				width;
 	int				whitespace;
@@ -49,6 +50,7 @@ void			disp_str(t_pf *tpf);
 void			disp_int(t_pf *tpf, char *base);
 void			disp_ptr(t_pf *tpf, char *base);
 void			disp_float(t_pf *tpf);
+void    		disp_Lfloat(t_pf* tpf);
 void			disp_percent(t_pf *tpf);
 int				pf_prec(t_pf *tpf, long val, int argsize);
 void			length_calc(t_pf *tpf, int count, ...);
