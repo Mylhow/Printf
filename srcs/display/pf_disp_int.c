@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_disp_int.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:05:40 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 05:12:23 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/02 22:50:58 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -118,7 +118,7 @@ void			disp_int(t_pf *tpf, char *base)
 	long	val;
 	int		argsize;
 
-	if (ft_charstr(tpf->specifier, "xX") || (tpf->specifier == 'd' && tpf->fl) || (tpf->specifier == 'i' && tpf->fl))
+	if (ft_charstr(tpf->specifier, "xX"))
 		val = va_arg(*(tpf->ap), long);
 	else if (tpf->specifier == 'u')
 		val = va_arg(*(tpf->ap), unsigned long);

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libftenum.h                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:56:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 19:16:46 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/02 22:42:05 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,18 +16,16 @@
 
 enum	e_boolean
 {
-	TRUE = 1,
-	FALSE = 0
+	FALSE = 0,
+	TRUE = 1
 };
 
 enum	e_base
 {
 	BASE10 = 0,
 	BASE16U = 1,
-	BASE16l = 2,
-	BASE8 = 3
+	BASE16l = 2
 };
 
 char			*ft_sbase(enum e_base b);
-
 #endif

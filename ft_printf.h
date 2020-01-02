@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 05:36:15 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/02 22:41:12 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/02 22:45:35 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 # define FT_PRINTF_H
 # include <stdio.h>
 # include <stdarg.h>
-# include "../libft/includes/libft.h"
+# include "libft/includes/libft.h"
 
 typedef struct	s_pf
 {

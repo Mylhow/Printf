@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   pf_utils.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 13:15:36 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 22:54:38 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/02 22:51:03 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ int	pf_prec(t_pf *tpf, long val, int argsize)
 		(tpf->vprecision == -1) ? tpf->vprecision = 0 : 0;
 		return (tpf->vprecision < argsize) ? tpf->vprecision : argsize;
 	}
-	else if (ft_charstr(tpf->specifier, "duixXpo"))
+	else if (ft_charstr(tpf->specifier, "duixXp"))
 	{
 		length = tpf->width;
 		length -= (tpf->vprecision <= argsize) ? argsize : tpf->vprecision;

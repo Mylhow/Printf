@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
+#    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/18 16:25:24 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/02 22:35:44 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,7 +24,6 @@ SRC_LIST		= 	ft_printf.c				pf_conv.c					\
 					display/pf_disp.c		display/pf_disp_int.c 		\
 					display/pf_disp_char.c	display/pf_disp_string.c	\
 					display/pf_disp_ptr.c	display/pf_disp_perc.c		\
-					display/pf_disp_float.c display/pf_disp_Lfloat.c	\
 					pf_utils.c
 
 INCS_LIST		=	ft_printf.h
@@ -42,7 +41,7 @@ LIBFT			=	$(addprefix $(LIBFT_PATH)/, $(LIBFT_NAME))
 
 CC				=	gcc
 INCLUDES		=	-I$(LIBFT_INC) -I$(PATH_INC)
-CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
+CFLAGS			=	-Wall -Wextra -Werror
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
 all:	$(LIBFT_NAME) $(NAME)
@@ -70,9 +69,5 @@ fclean: clean
 	@ echo "\033[31m > \033[1m$(NAME)/$(NAME).a\033[0;31m delete.\033[0m"
 	@ make -C $(LIBFT_PATH) fclean
 	@ echo "-----------------------------------------"
-
-test $(UT): $(NAME)
-	@ $(CC) -g3 $(CFLAGS) $(NAME) tests/main_$(UT).c
-	@ ./a.out
 
 re: fclean all
