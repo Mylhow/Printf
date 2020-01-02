@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/02 22:35:44 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/02 23:01:57 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -58,6 +58,8 @@ $(PF_PATH_OBJ)/%.o: $(PF_PATH_SRC)/%.c $(PF_INCS)
 $(LIBFT_NAME):
 	@ make -C $(LIBFT_PATH)
 	@ echo "\033[33;1m-- -- -- Compilation de la libft réussis. -- -- --\033[0m"
+
+bonus: all
 
 clean:
 	@ /bin/rm -rf $(PF_PATH_OBJ)
