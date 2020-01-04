@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:05:40 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/02 22:50:58 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/04 05:20:32 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -118,10 +118,8 @@ void			disp_int(t_pf *tpf, char *base)
 	long	val;
 	int		argsize;
 
-	if (ft_charstr(tpf->specifier, "xX"))
-		val = va_arg(*(tpf->ap), long);
-	else if (tpf->specifier == 'u')
-		val = va_arg(*(tpf->ap), unsigned long);
+	if (ft_charstr(tpf->specifier, "xXu"))
+		val = va_arg(*(tpf->ap), unsigned int);
 	else
 		val = va_arg(*(tpf->ap), int);
 	if (!tpf->fapostrophe)
