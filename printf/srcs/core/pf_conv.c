@@ -12,25 +12,28 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_string.h"
+#include "libft_ctype.h"
+#include "libft_number.h"
 
 int	pf_conv4(t_pf *tpf, int i)
 {
 	if (tpf->specifier == '%' && tpf->fprecision && tpf->vprecision == -1)
 		tpf->zero = -1;
 	if (ft_charstr(tpf->specifier, "diu"))
-		disp_int(tpf, ft_sbase(BASE10));
+		disp_int(tpf, BASE10);
 	else if (tpf->specifier == 's')
 		disp_str(tpf);
 	else if (tpf->specifier == 'c')
 		disp_char(tpf);
 	else if (tpf->specifier == 'x')
-		disp_int(tpf, ft_sbase(BASE16l));
+		disp_int(tpf, BASE16L);
 	else if (tpf->specifier == 'X')
-		disp_int(tpf, ft_sbase(BASE16U));
+		disp_int(tpf, BASE16U);
 	else if (tpf->specifier == '%')
 		disp_percent(tpf);
 	else if (tpf->specifier == 'p')
-		disp_ptr(tpf, ft_sbase(BASE16l));
+		disp_ptr(tpf, BASE16L);
 	return (i);
 }
 

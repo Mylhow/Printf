@@ -12,6 +12,8 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_string.h"
+#include "libft_put.h"
 
 void	disp_str(t_pf *tpf)
 {
@@ -30,12 +32,12 @@ void	disp_str(t_pf *tpf)
 	length_calc(tpf, 2, tronc, tpf->whitespace);
 	if (tpf->fmoins == FALSE)
 	{
-		ft_putcharec_fd(' ', tpf->whitespace, 1);
+		ft_putnchar_fd(' ', tpf->whitespace, 1);
 		ft_putnstr_fd(value, tronc, 1);
 	}
 	else
 	{
 		ft_putnstr_fd(value, tronc, 1);
-		ft_putcharec_fd(' ', tpf->whitespace, 1);
+		ft_putnchar_fd(' ', tpf->whitespace, 1);
 	}
 }

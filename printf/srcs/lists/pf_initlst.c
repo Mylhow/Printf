@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 void	pf_initlst(va_list *ap, t_pf *tpf)
 {

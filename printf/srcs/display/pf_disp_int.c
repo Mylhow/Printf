@@ -12,6 +12,9 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_put.h"
+#include "libft_string.h"
+#include "libft_number.h"
 
 static void		disp_int_show_fmoins(t_pf *tpf, char *base, long val)
 {
@@ -24,7 +27,7 @@ static void		disp_int_show_fmoins(t_pf *tpf, char *base, long val)
 		ft_putchar_fd('+', 1);
 	if (tpf->fdiese && val != 0)
 		(tpf->specifier == 'x') ? ft_putstr_fd("0x", 1) : ft_putstr_fd("0X", 1);
-	ft_putcharec_fd('0', tpf->zero, 1);
+	ft_putnchar_fd('0', tpf->zero, 1);
 	if (tpf->fapostrophe)
 	{
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
@@ -35,12 +38,12 @@ static void		disp_int_show_fmoins(t_pf *tpf, char *base, long val)
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
 			ft_putnbr_ul_base_fd(val, 1, base);
 	}
-	ft_putcharec_fd(' ', tpf->whitespace, 1);
+	ft_putnchar_fd(' ', tpf->whitespace, 1);
 }
 
 static void		disp_int_show_no_fmoins(t_pf *tpf, char *base, long val)
 {
-	ft_putcharec_fd(' ', tpf->whitespace, 1);
+	ft_putnchar_fd(' ', tpf->whitespace, 1);
 	if (tpf->fdiese && val != 0)
 		(tpf->specifier == 'x') ? ft_putstr_fd("0x", 1) : ft_putstr_fd("0X", 1);
 	if (val < 0)
@@ -50,7 +53,7 @@ static void		disp_int_show_no_fmoins(t_pf *tpf, char *base, long val)
 	}
 	else if (tpf->fplus)
 		ft_putchar_fd('+', 1);
-	ft_putcharec_fd('0', tpf->zero, 1);
+	ft_putnchar_fd('0', tpf->zero, 1);
 	if (tpf->fapostrophe)
 	{
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))

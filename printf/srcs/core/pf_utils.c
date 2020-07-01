@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_string.h"
 
 int	pf_prec(t_pf *tpf, long val, int argsize)
 {

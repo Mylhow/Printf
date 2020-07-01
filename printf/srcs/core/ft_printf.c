@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   pf_disp_char.c                                   .::    .:/ .      .::   */
+/*   ft_printf.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/16 15:34:26 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 17:26:20 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/02 23:02:29 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_put.h"
 
-void	disp_char(t_pf *tpf)
+int	ft_printf(const char *str, ...)
 {
-	char	value;
-	int		whitespace;
+	va_list ap;
+	int		i;
+	t_pf	tpf;
 
-	whitespace = 0;
-	value = va_arg(*(tpf->ap), int);
-	(tpf->width > 0) ? whitespace = tpf->width - 1 : 0;
-	length_calc(tpf, 1, whitespace + 1);
-	if (tpf->fmoins == FALSE)
+	i = 0;
+	va_start(ap, str);
+	tpf.length = 0;
+	while (str[i])
 	{
-		ft_putcharec_fd(' ', whitespace, 1);
-		ft_putchar_fd(value, 1);
+		if (str[i] == '%')
+		{
+			pf_initlst(&ap, &tpf);
+			i += pf_conv(&tpf, str + i + 1);
+		}
+		else
+		{
+			ft_putchar_fd(str[i], 1);
+			tpf.length++;
+		}
+		i++;
 	}
-	else
-	{
-		ft_putchar_fd(value, 1);
-		ft_putcharec_fd(' ', whitespace, 1);
-	}
+	va_end(ap);
+	return (tpf.length);
 }

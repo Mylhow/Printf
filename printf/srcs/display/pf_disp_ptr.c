@@ -12,24 +12,26 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_put.h"
+
 
 static void	disp_ptr_2(t_pf *tpf, char *base, unsigned long val)
 {
 	if (tpf->fmoins == FALSE)
 	{
-		ft_putcharec_fd(' ', tpf->whitespace, 1);
+		ft_putnchar_fd(' ', tpf->whitespace, 1);
 		(tpf->specifier == 'p') ? ft_putstr_fd("0x", 1) : 0;
-		ft_putcharec_fd('0', tpf->zero, 1);
+		ft_putnchar_fd('0', tpf->zero, 1);
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
 			ft_putnbr_ul_base_fd(val, 1, base);
 	}
 	else
 	{
 		(tpf->specifier == 'p') ? ft_putstr_fd("0x", 1) : 0;
-		ft_putcharec_fd('0', tpf->zero, 1);
+		ft_putnchar_fd('0', tpf->zero, 1);
 		if (!(tpf->fprecision == 1 && val == 0 && tpf->vprecision <= 0))
 			ft_putnbr_ul_base_fd(val, 1, base);
-		ft_putcharec_fd(' ', tpf->whitespace, 1);
+		ft_putnchar_fd(' ', tpf->whitespace, 1);
 	}
 }
 

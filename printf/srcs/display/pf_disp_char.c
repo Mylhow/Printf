@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_printf.c                                      .::    .:/ .      .::   */
+/*   pf_disp_char.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/20 02:40:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/02 23:02:29 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/16 15:34:26 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/16 17:26:20 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_put.h"
 
-int	ft_printf(const char *str, ...)
+void	disp_char(t_pf *tpf)
 {
-	va_list ap;
-	int		i;
-	t_pf	tpf;
+	char	value;
+	int		whitespace;
 
-	i = 0;
-	va_start(ap, str);
-	tpf.length = 0;
-	while (str[i])
+	whitespace = 0;
+	value = va_arg(*(tpf->ap), int);
+	(tpf->width > 0) ? whitespace = tpf->width - 1 : 0;
+	length_calc(tpf, 1, whitespace + 1);
+	if (tpf->fmoins == FALSE)
 	{
-		if (str[i] == '%')
-		{
-			pf_initlst(&ap, &tpf);
-			i += pf_conv(&tpf, str + i + 1);
-		}
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			tpf.length++;
-		}
-		i++;
+		ft_putnchar_fd(' ', whitespace, 1);
+		ft_putchar_fd(value, 1);
 	}
-	va_end(ap);
-	return (tpf.length);
+	else
+	{
+		ft_putchar_fd(value, 1);
+		ft_putnchar_fd(' ', whitespace, 1);
+	}
 }

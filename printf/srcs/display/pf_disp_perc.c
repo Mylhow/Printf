@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft_put.h"
 
 void	disp_percent(t_pf *tpf)
 {
@@ -33,6 +34,6 @@ void	disp_percent(t_pf *tpf)
 	else
 	{
 		ft_putchar_fd('%', 1);
-		ft_putcharec_fd(' ', nb_space, 1);
+		ft_putnchar_fd(' ', nb_space, 1);
 	}
 }

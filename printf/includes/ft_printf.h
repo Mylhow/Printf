@@ -13,21 +13,19 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include <stdio.h>
 # include <stdarg.h>
-# include "../libft/includes/libft.h"
 
 typedef struct	s_pf
 {
 	va_list			*ap;
-	enum e_boolean	fzero;
-	enum e_boolean	fstars;
-	enum e_boolean	fmoins;
-	enum e_boolean	fprecision;
-	enum e_boolean	fdiese;
-	enum e_boolean	fplus;
-	enum e_boolean	fspace;
-	enum e_boolean	fapostrophe;
+	int				fzero;
+	int				fstars;
+	int				fmoins;
+	int				fprecision;
+	int				fdiese;
+	int				fplus;
+	int				fspace;
+	int				fapostrophe;
 	int				vprecision;
 	int				width;
 	int				whitespace;
@@ -36,6 +34,11 @@ typedef struct	s_pf
 	int				length;
 }				t_pf;
 
+void			ft_putnbr_format_fd(long n, int fd);
+void			ft_putnbr_ul_base_fd(unsigned long nbr, int fd, char *base);
+int				ft_digit_format_base(long num, char *base);
+int				ft_digit_ul_base(unsigned long num, char *base);
+void			ft_putnstr_fd(char *str, int n, int fd);
 int				ft_printf(const char *str,
 				...) __attribute__((format(printf,1,2)));
 int				pf_conv(t_pf *tpf, const char *format);
