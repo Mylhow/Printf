@@ -20,7 +20,7 @@ int	pf_conv4(t_pf *tpf, int i)
 {
 	if (tpf->specifier == '%' && tpf->fprecision && tpf->vprecision == -1)
 		tpf->zero = -1;
-	if (ft_charstr(tpf->specifier, "diu"))
+	if (!ft_charstr(tpf->specifier, "diu"))
 		disp_int(tpf, BASE10);
 	else if (tpf->specifier == 's')
 		disp_str(tpf);
@@ -91,7 +91,7 @@ int	pf_conv(t_pf *tpf, const char *format)
 	int	i;
 
 	i = 0;
-	while (ft_charstr(format[i], "-+0# \'"))
+	while (!ft_charstr(format[i], "-+0# \'"))
 	{
 		(format[i] == '-') ? tpf->fmoins = TRUE : 0;
 		(format[i] == '#') ? tpf->fdiese = TRUE : 0;

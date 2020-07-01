@@ -13,7 +13,7 @@
 
 #include "ft_printf.h"
 #include "libft_string.h"
-
+#include <stdio.h>
 int	pf_prec(t_pf *tpf, long val, int argsize)
 {
 	int length;
@@ -24,7 +24,7 @@ int	pf_prec(t_pf *tpf, long val, int argsize)
 		(tpf->vprecision == -1) ? tpf->vprecision = 0 : 0;
 		return (tpf->vprecision < argsize) ? tpf->vprecision : argsize;
 	}
-	else if (ft_charstr(tpf->specifier, "duixXp"))
+	else if (!ft_charstr(tpf->specifier, "duixXp"))
 	{
 		length = tpf->width;
 		length -= (tpf->vprecision <= argsize) ? argsize : tpf->vprecision;

@@ -43,6 +43,7 @@ static void		disp_int_show_fmoins(t_pf *tpf, char *base, long val)
 
 static void		disp_int_show_no_fmoins(t_pf *tpf, char *base, long val)
 {
+
 	ft_putnchar_fd(' ', tpf->whitespace, 1);
 	if (tpf->fdiese && val != 0)
 		(tpf->specifier == 'x') ? ft_putstr_fd("0x", 1) : ft_putstr_fd("0X", 1);
@@ -121,7 +122,7 @@ void			disp_int(t_pf *tpf, char *base)
 	long	val;
 	int		argsize;
 
-	if (ft_charstr(tpf->specifier, "xXu"))
+	if (!ft_charstr(tpf->specifier, "xXu"))
 		val = va_arg(*(tpf->ap), unsigned int);
 	else
 		val = va_arg(*(tpf->ap), int);
