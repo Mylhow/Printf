@@ -1,7 +1,7 @@
 .PHONY: all clean fclean re
 
 # Name of file
-NAME		=	printf.a
+NAME		=	libprintf.a
 
 # Name directory
 PATH_INC	=	includes
@@ -19,7 +19,6 @@ SRCS		=	$(addprefix $(PATH_SRC)/, $(SRCS_DISP) $(SRCS_LISTS) $(SRCS_UTILS) $(SRC
 OBJS		=	$(addprefix $(PATH_OBJ)/, $(notdir $(SRCS:.c=.o)))
 INCS		=	$(wildcard $(PATH_INC)/*.h)
 LOG			=	$(addprefix $(PATH_LOG)/, $(patsubst %.a.log,%.log,$(NAME).log))
-LIBFT		=	-L$(PATH_LIBFT) -lft
 
 # Commands of compilation
 COMP		=	clang
@@ -60,3 +59,5 @@ fclean: clean
 	@ make -C $(PATH_LIBFT) fclean
 
 re: fclean all
+
+#clang -Wall -Werror -Wextra main.c -Llibprintf -lprintf -Llibft -lft
